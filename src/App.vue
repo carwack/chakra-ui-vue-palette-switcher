@@ -24,12 +24,23 @@ export default {
   name: 'App',
   data () {
     return {
-      currentPalette: 'rosettesCream' // default palette to start with
+      currentPalette: 'rosettesCream', // default palette to start with
+      paletteList: [
+        'rosettesCream',
+        'foilSneakers',
+        'bambooBeach'
+      ],
+      lastRandom: 0
     }
   },
   methods: {
     changePalette () {
-      this.currentPalette = 'bambooBeach'
+      let random = Math.floor(Math.random() * (this.paletteList.length - 1))
+      console.log(random)
+      if (random >= this.lastRandom) random += 1
+
+      this.lastRandom = random
+      this.currentPalette = this.paletteList[this.lastRandom]
     }
   }
 }
